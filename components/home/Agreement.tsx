@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { agreementCompAtom } from "@/atoms/home";
 
 const Agreement = () => {
@@ -47,7 +47,7 @@ const Agreement = () => {
           <ArrowLeft />
           Back
         </Button>
-        <Button className="cursor-pointer w-33">Agree & Continue</Button>
+        <Button className="cursor-pointer w-33" >Agree & Continue</Button>
       </div>
     </>
   );
