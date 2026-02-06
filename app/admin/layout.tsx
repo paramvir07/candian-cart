@@ -6,10 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-[#F3F1ED]">
+    <div className="bg-[#F3F1ED] scroll-smooth">
         <TooltipProvider>{children}</TooltipProvider>
     </div>
-
   );
 }
 

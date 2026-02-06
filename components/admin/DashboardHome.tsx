@@ -13,25 +13,25 @@ const DashboardHome = () => {
         </p>
 
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Card className="p-5 bg-[#E7E6EB]">
+          <Card className="p-5 bg-[#E7E6EB] shadow-2xl shadow-black">
             <p className="text-sm font-semibold">Revenue</p>
             <p className="mt-2 text-2xl font-extrabold">$124,320</p>
             <p className="mt-1 text-xs">+12.4% from last month</p>
           </Card>
 
-          <Card className="p-5 bg-[#F9EFC9]">
+          <Card className="p-5 bg-[#F9EFC9] shadow-2xl shadow-black">
             <p className="text-sm font-semibold">No. of Shops</p>
             <p className="mt-2 text-2xl font-extrabold">86</p>
             <p className="mt-1 text-xs">+6 new this month</p>
           </Card>
 
-          <Card className="p-5 bg-[#F5E6E2]">
+          <Card className="p-5 bg-[#F5E6E2] shadow-2xl shadow-black">
             <p className="text-sm font-semibold">Active Users</p>
             <p className="mt-2 text-2xl font-extrabold">1,342</p>
             <p className="mt-1 text-xs">+3.1% this week</p>
           </Card>
 
-          <Card className="p-5 bg-[#DFE7EB]">
+          <Card className="p-5 bg-[#DFE7EB] shadow-2xl shadow-black">
             <p className="text-sm font-semibold">Platform Activity</p>
             <p className="mt-2 text-2xl font-extrabold">78%</p>
             <p className="mt-1 text-xs">Last 24 hours</p>

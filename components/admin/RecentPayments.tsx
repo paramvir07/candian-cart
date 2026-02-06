@@ -31,7 +31,7 @@ const RecentPayments = () => {
         {payments.map((payment, idx) => (
           <Card
             key={idx}
-            className="flex justify-between px-4 py-3"
+            className="flex justify-between px-4 py-3 cursor-pointer"
           >
             <div className="flex items-center justify-between">
                 <div>
