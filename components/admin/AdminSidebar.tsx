@@ -7,14 +7,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../ui/tooltip"
-import { adminSidebarItemsAtom, AdminSidebarItemsEnum} from "@/atoms/Admin/admin"
-import { useAtom } from "jotai"
 
 const AdminSidebar = () => {
-
-  const [activeItem, setActiveItem] = useAtom(adminSidebarItemsAtom)
-
-
   return (
     <>
       {/* Desktop Sidebar */}
@@ -23,19 +17,9 @@ const AdminSidebar = () => {
         <div className="flex flex-col gap-4">
           <Tooltip>
             <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setActiveItem(AdminSidebarItemsEnum.Home)}
-              className={
-                activeItem === AdminSidebarItemsEnum.Home
-                  ? "bg-accent text-accent-foreground"
-                  : ""
-              }
-            >
-              <HomeIcon />
-            </Button>
-
+              <Button size="icon" variant='ghost'>
+                <HomeIcon />
+              </Button>
             </TooltipTrigger>
             <TooltipContent side="right">
               <p>Dashboard</p>
@@ -44,18 +28,9 @@ const AdminSidebar = () => {
 
           <Tooltip>
             <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setActiveItem(AdminSidebarItemsEnum.Analytics)}
-              className={
-                activeItem === AdminSidebarItemsEnum.Analytics
-                  ? "bg-accent text-accent-foreground"
-                  : ""
-              }
-            >
-              <BarChart />
-            </Button>
+              <Button size="icon" variant="ghost">
+                <BarChart />
+              </Button>
             </TooltipTrigger>
             <TooltipContent side="right">
               <p>Analytics</p>
@@ -64,18 +39,9 @@ const AdminSidebar = () => {
 
           <Tooltip>
             <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setActiveItem(AdminSidebarItemsEnum.Users)}
-              className={
-                activeItem === AdminSidebarItemsEnum.Users
-                  ? "bg-accent text-accent-foreground"
-                  : ""
-              }
-            >
-              <Users2 />
-            </Button>
+              <Button size="icon" variant="ghost">
+                <Users2 />
+              </Button>
             </TooltipTrigger>
             <TooltipContent side="right">
               <p>Users</p>
@@ -84,18 +50,9 @@ const AdminSidebar = () => {
 
           <Tooltip>
             <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setActiveItem(AdminSidebarItemsEnum.Shops)}
-              className={
-                activeItem === AdminSidebarItemsEnum.Shops
-                  ? "bg-accent text-accent-foreground"
-                  : ""
-              }
-            >
-              <Store />
-            </Button>
+              <Button size="icon" variant="ghost">
+                <Store />
+              </Button>
             </TooltipTrigger>
             <TooltipContent side="right">
               <p>Shops</p>
@@ -123,48 +80,19 @@ const AdminSidebar = () => {
 
       {/* Mobile Bottom Navbar */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden justify-around bg-white py-2 m-3 rounded-full shadow-xl">
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => setActiveItem(AdminSidebarItemsEnum.Home)}
-          className={activeItem === AdminSidebarItemsEnum.Home ? "bg-accent" : ""}
-        >
+        <Button size="icon" variant="ghost">
           <HomeIcon />
         </Button>
-
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => setActiveItem(AdminSidebarItemsEnum.Analytics)}
-          className={activeItem === AdminSidebarItemsEnum.Analytics ? "bg-accent" : ""}
-        >
+        <Button size="icon" variant="ghost">
           <BarChart />
         </Button>
-
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => setActiveItem(AdminSidebarItemsEnum.Users)}
-          className={activeItem === AdminSidebarItemsEnum.Users ? "bg-accent" : ""}
-        >
+        <Button size="icon" variant="ghost">
           <Users2 />
         </Button>
-
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => setActiveItem(AdminSidebarItemsEnum.Shops)}
-          className={activeItem === AdminSidebarItemsEnum.Shops ? "bg-accent" : ""}
-        >
+        <Button size="icon" variant="ghost">
           <Store />
         </Button>
-
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => setActiveItem(AdminSidebarItemsEnum.Profile)}
-          className={activeItem === AdminSidebarItemsEnum.Profile ? "bg-accent" : ""}
-        >
+        <Button size="icon" variant="ghost">
           <Avatar className="h-8 w-8">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
