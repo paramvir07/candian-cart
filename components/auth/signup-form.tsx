@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,13 +13,36 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
+import { Spinner } from "@/components/ui/spinner";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import {cutomerSignupAction} from '@/app/actions/customerSignup.actions'
+import {customerSignupAction} from '@/actions/auth/customerSignup.actions'
+import { useActionState, useEffect } from "react";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
+const initialState = {
+  success: false,
+  message: ""
+};
+
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
-  
+  const [state, formAction, isPending] = useActionState(
+    customerSignupAction,
+    initialState
+  );
+  useEffect(() => {
+    if (state.message) {
+      if (state.success) {
+        toast.success(state.message);
+        redirect("/");
+      } else {
+        toast.error(state.message);
+      }
+    }
+  }, [state.message, state.success]);
+
   return (
     <Card {...props}>
       <CardHeader>
@@ -28,20 +52,21 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={cutomerSignupAction}>
+        <form action={formAction}>
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="name">Full Name</FieldLabel>
+              <FieldLabel htmlFor="name">Full Name *</FieldLabel>
               <Input
                 id="name"
                 type="text"
                 name="name"
                 placeholder="John Doe"
                 required
+                
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldLabel htmlFor="email">Email *</FieldLabel>
               <Input
                 id="email"
                 type="email"
@@ -49,20 +74,16 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 placeholder="m@example.com"
                 required
               />
-              <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
-              </FieldDescription>
             </Field>
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">Password *</FieldLabel>
               <Input id="password" type="password" name="password" required />
               <FieldDescription>
                 Must be at least 8 characters long.
               </FieldDescription>
             </Field>
             <Field>
-              <FieldLabel htmlFor="address">Adrress</FieldLabel>
+              <FieldLabel htmlFor="address">Adrress *</FieldLabel>
               <Input
                 id="address"
                 type="text"
@@ -74,7 +95,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             <Field>
               <div className="flex justify-center items-center gap-3">
                 <div>
-                  <FieldLabel htmlFor="city">City</FieldLabel>
+                  <FieldLabel htmlFor="city">City *</FieldLabel>
                   <Input
                     id="city"
                     type="text"
@@ -84,7 +105,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                   />
                 </div>
                 <div>
-                  <FieldLabel htmlFor="province">Province</FieldLabel>
+                  <FieldLabel htmlFor="province">Province *</FieldLabel>
                   <Input
                     id="province"
                     type="text"
@@ -96,17 +117,20 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               </div>
             </Field>
             <Field>
-              <FieldLabel htmlFor="mobile">Mobile Number</FieldLabel>
+              <FieldLabel htmlFor="mobile">Mobile Number *</FieldLabel>
               <Input
                 id="mobile"
                 name="mobile"
-                type="number"
-                placeholder="(555) 123-4567"
+                type="tel"
+                placeholder="5551234567"
                 required
+                pattern="[0-9]{10}"
+                maxLength={10}
+                title="Mobile number must be exactly 10 digits"
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="mobile">Do you have a car?</FieldLabel>
+              <FieldLabel htmlFor="mobile">Do you have a car? *</FieldLabel>
               <RadioGroup
                 name="hasCar"
                 defaultValue="false"
@@ -123,7 +147,9 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               </RadioGroup>
             </Field>
             <Field>
-              <Button type="submit">Create Account</Button>
+              <Button type="submit">
+                {isPending ? <Spinner /> : "Create Account"}
+              </Button>
               <Button variant="outline" type="button">
                 Sign up with Google
               </Button>

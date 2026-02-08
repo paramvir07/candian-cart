@@ -1,11 +1,11 @@
 import { ArrowLeft } from "lucide-react";
-import { Button } from "../ui/button";
-import { ScrollArea } from "../ui/scroll-area";
 import { useSetAtom } from "jotai";
-import { agreementCompAtom } from "@/atoms/home";
+import { agreementCompAtom } from "@/atoms/customer/home";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Agreement = () => {
-    const setAgreementComp = useSetAtom(agreementCompAtom);
+  const setAgreementComp = useSetAtom(agreementCompAtom);
   return (
     <>
       <div className="text-muted-foreground text-sm text-center">
@@ -43,11 +43,15 @@ const Agreement = () => {
       </div>
 
       <div className="flex justify-center items-center gap-3 w-full">
-        <Button variant="secondary" className="cursor-pointer w-33" onClick={()=> setAgreementComp(false)}>
+        <Button
+          variant="secondary"
+          className="cursor-pointer w-33"
+          onClick={() => setAgreementComp(false)}
+        >
           <ArrowLeft />
           Back
         </Button>
-        <Button className="cursor-pointer w-33" >Agree & Continue</Button>
+        <Button className="cursor-pointer w-33">Agree & Continue</Button>
       </div>
     </>
   );
